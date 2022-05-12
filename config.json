@@ -7,11 +7,26 @@
     "default": {
       "type": "standard",
       "key": "0739a645a7d6601d9d45f6b237c4edeadad904f2fce53625dfdd541ec4fc8134"
+    },
+    "sidecar": {
+      "type": "standard",
+      "key": "c9f50b8537ff4ed0861bff74e3234d2edd18c508b860408d9e769a7e35610559"
     }
   },
   "signing": {
     "profiles": {
       "default": {
+        "usages": [
+          "signing",
+          "key encipherment",
+          "server auth",
+          "client auth"
+        ],
+        "expiry": "1440h",
+        "copy_extensions": true,
+        "auth_key": "default"
+      },
+      "sidecar": {
         "usages": [
           "signing",
           "key encipherment",
