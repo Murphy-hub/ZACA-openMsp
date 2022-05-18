@@ -7,7 +7,6 @@ on:
 jobs:
   publish:
     name: Publish docker image and binaries
-    needs: build
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
