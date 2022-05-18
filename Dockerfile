@@ -1,8 +1,5 @@
 FROM golang:1.17.8-alpine AS builder
 
-ENV GO111MODULE=on \
-    GOPROXY=https://goproxy.oneitfarm.com,https://goproxy.cn,direct
-
 WORKDIR /build
 
 COPY . .
@@ -14,15 +11,14 @@ WORKDIR /zaca
 
 COPY --from=builder /build/zaca .
 COPY --from=builder /build/database/mysql/migrations ./database/mysql/migrations
-COPY --from=builder /build/conf.prod.yml .
-COPY --from=builder /build/conf.test.yml .
+COPY --from=builder /build/conf.yml .
 RUN chmod +x capitalizone
 
 # API service
 CMD ["./zaca", "api"]
 
 # TLS service
-# CMD ["./zaca", "api"]
+# CMD ["./zaca", "tls"]
 
 # OCSP service
-# CMD ["./zaca", "api"]
+# CMD ["./zaca", "ocsp"]
